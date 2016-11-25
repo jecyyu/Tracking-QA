@@ -1,0 +1,84 @@
+{
+  "letv": {
+    "url": "http://114.80.90.115:9003/letv/bidrequest",
+    "request": {
+      "id": "073724f1eb6d4c16bd12c8398b7ebdd2",
+      "imp": [
+        {
+          "id": "02d527bd500a41ab909625e44c4feb7a",
+          "bidfloor": 500,
+          "adzoneid": 16,
+          "video": {
+            "w": 640,
+            "h": 480,
+            "display": 2,
+            "minduration": 15,
+            "maxduration": 15,
+            "mime": [
+              "video/mp4"
+            ]
+          },
+          "pmp":{
+            "deals":[
+              {
+                "id": "9898",
+                "bidfloor":6123
+              }
+            ]
+          }
+        }
+      ],
+      "device": {
+        "ua": "android/4.1.1 (samsung;GT-I9300) letvVideo/5810/aps_cm_3.0.5.6",
+        "ip": "111.37.17.173",
+        "did": "354316054366184",
+        "dpid": "d5bae2f169a62ada",
+        "make": "samsung",
+        "model": "GT-I9300",
+        "os": "ANDROID",
+        "osv": "4.1.1",
+        "carrier": "",
+        "language": "",
+        "js": 0,
+        "connectiontype": 2,
+        "devicetype": 0,
+        "geo": {
+          "lat": 0,
+          "lon": 0,
+          "ext": {
+            "accuracy": 0
+          }
+        },
+        "ext": {
+          "idfa": "",
+          "mac": "38aa3c37247",
+          "ssid": "",
+          "w": 720,
+          "h": 1280,
+          "brk": 0,
+          "ts": 1432515603,
+          "interstitial": 0
+        }
+      },
+      "user": {
+        "id": "903dced32546b7126aed1b59026058dd",
+        "gender": "",
+        "yob": 0,
+        "ext": {
+          "models": []
+        }
+      },
+      "app": {
+        "name": "letvVideo",
+        "cr": 1,
+        "ext": {
+          "sdk": "5810",
+          "market": 0,
+          "appid": "",
+          "cat": "",
+          "tag": ""
+        }
+      }
+    }
+  }
+}

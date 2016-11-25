@@ -1,0 +1,57 @@
+syntax = "proto3"
+package protocol.madhouse;
+
+message Request
+{
+    required string bid = 1;
+    required string adspaceid = 2;
+    optional string adtype = 3;
+    optional string pkgname = 4;
+    optional string appname = 5;
+    optional string conn = 6;
+    optional string carrier = 7;
+    required string os = 8;
+    optional string osv = 9;
+    optional string imei = 10;
+    optional string wma = 11;
+    optional string aid = 12;
+    optional string aaid = 13;
+    optional string idfa = 14;
+    optional string oid = 15;
+    optional string uid = 16;
+    optional string device = 17;
+    optional string ua = 18;
+    optional string ip = 19;
+    required string width = 20;
+    required string height = 21;
+    optional string pid = 22;
+    optional string pcat = 23;
+    optional string media = 24;
+    optional string density = 25;
+    optional string lon = 26;
+    optional string lat = 27;
+    optional string cell = 28;
+    optional string mcell = 29;
+    optional string apitype = 30;
+    optional string ts = 31;
+    optional string debug = 32;
+}
+
+message Response
+{
+    required string adspaceid = 1;
+    required uint32 returncode = 2;
+    optional string bid = 3;
+    optional string cid = 4;
+    optional uint32 adwidth = 5;
+    optional uint32 adheight = 6;
+    optional uint32 adtype = 7;
+    optional string imgurl = 8;
+    optional string clickurl = 9;
+    repeated string imgtracking = 10;
+    repeated string thclkurl = 11;
+    optional string displaytitle = 12;
+    optional string displaytext = 13;
+}
+
+

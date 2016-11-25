@@ -1,0 +1,22 @@
+package protocol.madhouse;
+
+message Response
+{
+    required string adspaceid = 1;
+    required uint32 returncode = 2;
+    optional string bid = 3;
+    optional string cid = 4;
+    optional uint32 adwidth = 5;
+    optional uint32 adheight = 6;
+    optional uint32 adtype = 7;
+    optional string imgurl = 8;
+    optional string clickurl = 9;
+    repeated string imgtracking = 10;
+    repeated string thclkurl = 11;
+    optional string displaytitle = 12;
+    optional string displaytext = 13;
+}
+
+
+
+

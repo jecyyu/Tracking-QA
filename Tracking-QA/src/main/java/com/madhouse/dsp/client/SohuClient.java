@@ -10,12 +10,19 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.domain.MadhouseParam;
+import com.google.protobuf.GeneratedMessage;
 
 public class SohuClient extends BaseClient {
 
-    public SohuClient(String name) {
-        super(name);
+    public SohuClient(String name,String pathname) {
+        super(name,pathname);
     }
+    
+    GeneratedMessage genBidRequest() { 
+    	return null;
+    	
+    }
+
 
     public Sohu.Request genBidRequest(MadhouseParam madParam) {
         Sohu.Request.Builder requestBuilder =  Sohu.Request.newBuilder();

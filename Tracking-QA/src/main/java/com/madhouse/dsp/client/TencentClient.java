@@ -17,11 +17,17 @@ import java.util.List;
  */
 public class TencentClient extends BaseClient {
 
-    public TencentClient(String name) {
+    public TencentClient(String name,String pathname) {
     	
-        super(name);
+        super(name,pathname);
     }
     public String strDecode;
+    @Override
+    GeneratedMessage genBidRequest() { 
+    	return null;
+    	
+    }
+    
     @Override
     GeneratedMessage genBidRequest(MadhouseParam madParam) {
         Tencent.Request.Builder requestBuilder = Tencent.Request.newBuilder();

@@ -12,8 +12,14 @@ import java.io.InputStream;
  */
 public class YoukuClient extends BaseClient {
 
-    public YoukuClient(String name) {
-        super(name);
+    public YoukuClient(String name,String pathname) {
+        super(name,pathname);
+    }
+    
+    @Override
+    GeneratedMessage genBidRequest() { 
+    	return null;
+    	
     }
 
     @Override

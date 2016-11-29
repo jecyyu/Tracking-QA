@@ -12,8 +12,13 @@ import java.io.InputStream;
  */
 public class LetvClient extends BaseClient {
 
-    public LetvClient(String name) {
-        super(name);
+    public LetvClient(String name,String pathname) {
+        super(name,pathname);
+    }
+    
+    @Override
+    public GeneratedMessage genBidRequest() {
+        return null;
     }
 
     @Override

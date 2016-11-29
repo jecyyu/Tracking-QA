@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0" 
-	xmlns="http://java.sun.com/xml/ns/javaee" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-<display-name>Tracking-QA</display-name>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>Tracking-QA</display-name>
   <welcome-file-list>
     <welcome-file>readme.jsp</welcome-file>
   </welcome-file-list>
-  
-  
   <servlet>
     <servlet-name>trackingServlet</servlet-name>
     <servlet-class>com.servlet.trackingServlet</servlet-class>
@@ -18,8 +12,10 @@
     <servlet-name>madhouseServlet</servlet-name>
     <servlet-class>com.servlet.madhouseServlet</servlet-class>
   </servlet>
-  
-  
+  <servlet>
+    <servlet-name>iqiyiServlet</servlet-name>
+    <servlet-class>com.servlet.iqiyiServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>trackingServlet</servlet-name>
     <url-pattern>/trackingCount</url-pattern>
@@ -44,5 +40,68 @@
     <servlet-name>madhouseServlet</servlet-name>
     <url-pattern>/madhouse-protobuf</url-pattern>
   </servlet-mapping>
-
+  <servlet-mapping>
+    <servlet-name>iqiyiServlet</servlet-name>
+    <url-pattern>/iqiyi-protobuf</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>sohuServlet</display-name>
+    <servlet-name>sohuServlet</servlet-name>
+    <servlet-class>com.servlet.sohuServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sohuServlet</servlet-name>
+    <url-pattern>/sohu-protobuf</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>youkuServlet</display-name>
+    <servlet-name>youkuServlet</servlet-name>
+    <servlet-class>com.servlet.youkuServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>youkuServlet</servlet-name>
+    <url-pattern>/youku-protobuf</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>tencentServlet</display-name>
+    <servlet-name>tencentServlet</servlet-name>
+    <servlet-class>com.servlet.tencentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>tencentServlet</servlet-name>
+    <url-pattern>/tencent-protobuf</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getServlet</display-name>
+    <servlet-name>getServlet</servlet-name>
+    <servlet-class>com.servlet.getServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getServlet</servlet-name>
+    <url-pattern>/getSend</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>postServlet</display-name>
+    <servlet-name>postServlet</servlet-name>
+    <servlet-class>com.servlet.postServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>postServlet</servlet-name>
+    <url-pattern>/postSend</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>uploadServlet</display-name>
+    <servlet-name>uploadServlet</servlet-name>
+    <servlet-class>com.servlet.uploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>uploadServlet</servlet-name>
+    <url-pattern>/uploadServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

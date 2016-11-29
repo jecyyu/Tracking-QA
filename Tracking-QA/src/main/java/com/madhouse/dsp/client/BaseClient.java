@@ -24,18 +24,124 @@ abstract class BaseClient {
     public int connectTimeout;
     public int readTimeout;
 
-    public BaseClient(String name) {
+    public BaseClient(String name,String configname) {
         this.name = name;
-//        config = ConfigFactory.load().getConfig(name);
-//        String filePath = "/services/data/dspclient/conf/" + name + ".conf";
-//        String filePath = "/Users/liuyu/Documents/workspace/dspclient_4/src/main/resources/" + name + ".conf";
-        ///Users/liuyu/Documents/workspace/dspclient_4/src/main/resources/iqiyi.conf
-        //config = ConfigFactory.parseFile(new File(filePath)).getConfig(name);
+        File directory = new File("");
+        if(name!= "madhouse")
+        {
+        	String filePath="";
+        	String path = this.getClass().getClassLoader().getResource("../../").getPath();
+			filePath = path+"config_temp/"+configname;
+			
+//        String filePath = "/Users/liuyu/Documents/git2github/Tracking-QA/WebContent/config_temp/IQIYI.conf";
+//        	String filePath = "/Users/liuyu/Documents/workspace/dspclient_4/src/main/resources/iqiyi.conf";
+        	System.out.println(filePath);
+            config = ConfigFactory.parseFile(new File(filePath)).getConfig(name);
+        }
+      
     }
+    
+    abstract GeneratedMessage genBidRequest();
 
     abstract GeneratedMessage genBidRequest(MadhouseParam madparam);
 
     abstract GeneratedMessage parseFrom(InputStream in) throws IOException;
+    
+    public String post() {
+    	String result = "";
+        try {        	
+        	al=new ArrayList<String>();
+            System.out.println("senddata: " + config.getString("url"));        	
+            long start = System.currentTimeMillis();  
+            URL url;
+            //baseUrl="114.80.90.115:9001";
+            if(baseUrl != null && baseUrl !=""){               	  
+            	String Link= "http://" + baseUrl + config.getString("path");
+            	al.add("senddata_params: " + Link);
+            	url = new URL(Link);
+            }
+            else
+            {
+            	al.add("senddata_conf: " + config.getString("url"));
+            	url = new URL(config.getString("url"));                     	
+            }        	
+        	al.add("initialize: ");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
+            connection.setRequestMethod("POST");
+            connection.setConnectTimeout(connectTimeout);
+            connection.setReadTimeout(readTimeout);
+            byte [] b;
+            switch (name) {
+                case SOHU:
+                case IQIYI:
+                case TENCENT:
+                    connection.setRequestProperty("content-type", "application/x-protobuf");
+                    b = genBidRequest().toByteArray();
+                    break;
+                case LETV:
+                case YOUKU:
+                    connection.setRequestProperty("content-type", "application/json");
+                    b = JSON.toJSONBytes(config.getAnyRef("request"));
+                    break;
+                case MADHOUSE:
+                    connection.setRequestProperty("content-type", "application/x-protobuf");
+                    b = genBidRequest().toByteArray();
+                    break;
+                default:
+                    System.out.println("Something is wrong");
+                    return "Something is wrong";
+            }
+            BufferedOutputStream out = new BufferedOutputStream(connection.getOutputStream());
+            out.write(b);
+            out.flush();
+            int code = connection.getResponseCode();
+            //System.out.println("ResponseCode is : " + code);
+            if (code == 200) {
+                if (name.equals(SOHU) || name.equals(IQIYI) || name.equals(TENCENT) || name.equals(MADHOUSE)) {
+                    InputStream in = connection.getInputStream();
+                    long end = System.currentTimeMillis();
+                    //System.out.println("cost time is :" + (end - start) + " ms");
+                    String str = parseFrom(in).toString();                
+                    //System.out.println(str); 
+                    al.set(1,"success cost time is :" + (end - start) + " ms " + " ResponseCode is : " + code + " " + str);     
+                    result = str;
+                    
+                } else if (name.equals(LETV) || name.equals(YOUKU)) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    long end = System.currentTimeMillis();
+                    String lines;
+                    String details = null;
+                    while ((lines = reader.readLine()) != null) {
+                        lines = new String(lines.getBytes(), "utf-8");
+                        details+=lines;
+                        //System.out.println(lines);                        
+                    }
+                    //System.out.println("cost time is :" + (end - start) + " ms");
+                    al.set(1,"success cost time is :" + (end - start) + " ms " + " ResponseCode is : " + code + " " + details); 
+                    reader.close();
+                }
+            } else {
+                System.out.println("Something is wrong");
+            	//int le = connection.getErrorStream().available();
+                //BufferedInputStream in = new BufferedInputStream(connection.getErrorStream());
+                //byte[] Error= new byte[le];
+                //in.read(Error);
+                //al.set(1, "ErrorStream: " + new String(Error));
+            }
+            int contentLength = connection.getContentLength();
+            InputStream is = connection.getInputStream();
+            is.close();
+
+            connection.disconnect();
+
+        } catch (IOException e) {
+        	al.set(1,"IOException: " + e.getMessage().toString() );
+            e.printStackTrace();
+        }
+        return result;
+    }
 
     public String post(MadhouseParam madParam) {
     	String result = "";

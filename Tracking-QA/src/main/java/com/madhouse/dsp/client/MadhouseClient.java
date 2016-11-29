@@ -12,12 +12,59 @@ import com.domain.MadhouseParam;
  *
  */
 public class MadhouseClient extends BaseClient {
-	public MadhouseClient(String name) {
+	public MadhouseClient(String name,String pathname) {
 
-		super(name);
+		super(name,pathname);
 	}
 	
 	public String strDecode;
+	
+	GeneratedMessage genBidRequest() {
+        Madhouse.Request.Builder requestBuilder = Madhouse.Request.newBuilder();
+
+        requestBuilder.setBid(getString("request.bid"));
+        requestBuilder.setAdspaceid(getString("request.adspaceid"));
+
+//        if (config.hasPath("request.site")) {
+//            siteBuilder.setName(getString("request.site.name"));
+//            siteBuilder.setPage(getString("request.site.page"));
+//            siteBuilder.setRef(getString("request.site.ref"));
+//            siteBuilder.setChannel(getString("request.site.channel"));
+//            requestBuilder.setSite(siteBuilder);
+//        }
+        requestBuilder.setAdtype(getString("request.adtype"));
+        requestBuilder.setPkgname(getString("request.pkgname"));
+        requestBuilder.setAppname(getString("request.appname"));
+        requestBuilder.setConn(getString("request.conn"));
+        requestBuilder.setCarrier(getString("request.carrier"));
+        requestBuilder.setOs(getString("request.os"));
+        requestBuilder.setOsv(getString("request.osv"));
+        requestBuilder.setWma(getString("request.wma"));
+        requestBuilder.setIdfa(getString("request.idfa"));
+        requestBuilder.setOid(getString("request.oid"));
+        requestBuilder.setUid(getString("request.uid"));
+        requestBuilder.setImei(getString("request.imei"));
+        requestBuilder.setAid(getString("request.aid"));
+        requestBuilder.setAaid(getString("request.aaid"));
+        requestBuilder.setUa(getString("request.ua"));
+        requestBuilder.setIp(getString("request.ip"));
+        requestBuilder.setWidth(getString("request.width"));
+        requestBuilder.setHeight(getString("request.height"));
+        requestBuilder.setPid(getString("request.pid"));
+        requestBuilder.setPcat(getString("request.pcat"));
+        requestBuilder.setMedia(getString("request.media"));
+        requestBuilder.setDensity(getString("request.density"));
+        requestBuilder.setLon(getString("request.lon"));
+        requestBuilder.setLat(getString("request.lat"));
+        requestBuilder.setCell(getString("request.cell"));
+        requestBuilder.setMcell(getString("request.mcell"));
+        requestBuilder.setApitype(getString("request.apitype"));
+        requestBuilder.setTs(getString("request.ts"));
+        requestBuilder.setDebug(getString("request.debug"));
+        requestBuilder.setDevice(getString("request.device"));
+
+        return requestBuilder.build();
+    }
 	
 	
 	@Override

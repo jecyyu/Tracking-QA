@@ -26,12 +26,12 @@ import com.tracking.testTracking;
  */
 public class madhouseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String LETV = "letv";
-    public static final String SOHU = "sohu";
-    public static final String IQIYI = "iqiyi";
-    public static final String YOUKU = "youku";
-    public static final String TENCENT  =  "tencent";
-    public static final String MADHOUSE = "madhouse";
+//	public static final String LETV = "letv";
+//    public static final String SOHU = "sohu";
+//    public static final String IQIYI = "iqiyi";
+//    public static final String YOUKU = "youku";
+//    public static final String TENCENT  =  "tencent";
+//    public static final String MADHOUSE = "madhouse";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -85,7 +85,7 @@ public class madhouseServlet extends HttpServlet {
 		madParam.setTs(request.getParameter("ts"));
 		madParam.setDebug(request.getParameter("debug"));
 
-        String message = new MadhouseClient("madhouse").post(madParam);
+        String message = new MadhouseClient("madhouse","").post(madParam);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         String jsonStr = message;

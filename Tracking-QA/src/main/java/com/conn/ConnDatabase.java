@@ -21,12 +21,12 @@ public class ConnDatabase {
 		Connection conn = null;
 		
 		try {
-			//加载属性文件，读取数据库连接配置信息
+			//
 			Properties pro = new Properties();
 			try {
 				pro.load(ConnDatabase.class.getResourceAsStream("jdbc.properties"));
 			} catch (IOException e) {
-				System.out.println("未找到配置文件！！！");
+				System.out.println("");
 			}
 			url = pro.getProperty("url");	
 			classname = pro.getProperty("driverClassName");	
